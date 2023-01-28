@@ -113,12 +113,31 @@
                alert("O CPF não é válido")
                return;
             }
-            let rgValidado = /^([0-9]{8})+$/.test(document.getElementById('frg').value);
+            let rgValidado = /^([0-9]{7})+$/.test(document.getElementById('frg').value);
             if (rgValidado == false) {
                alert("O RG não é válido")
                return;
             }
-
+            let dtnascValidado = document.getElementById('fdtnasc').value;
+            if (dtnascValidado == "") {
+               alert("Data de nascimento precisa ser informada")
+               return;
+            }
+            let emailValidado = document.getElementById('femail').value;
+            if (emailValidado == "") {
+               alert("e-mail precisa ser informado")
+               return;
+            }
+            let senhaValidado = document.getElementById('fsenha').value;
+            if (senhaValidado == "") {
+               alert("Senha precisa ser informada")
+               return;
+            }
+            let liconcordoValidado = document.getElementById('fliconcordo').value;
+            if (liconcordoValidado == false) {
+               alert("Você precisa clicar em 'Li e concordo'.")
+               return;
+            }
 
 
             /*

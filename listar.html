@@ -44,8 +44,8 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>CPF</th>
-                  <th>RG</th>
+                  <th>Email</th>
+                  <th>Gênero</th>
                   <th>...</th>
 
                 </tr>
@@ -64,5 +64,68 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function listarProfessores(){
+            //document.getElementById("demo").innerHTML ='<div class="spinner-border" role="status"></div>';
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                const dados = JSON.parse(this.responseText);
+                var tabela = '<table id="" name=""  class="table">';
+                tabela = tabela + '<tr>';
+                tabela = tabela + '<th>Matricula</th>';
+                tabela = tabela + '<th>Nome</th>';
+                tabela = tabela + '<th>Salário</th>';
+                tabela = tabela + '</tr>';
+                //imprimir os dados na tabela
+                for (let index = 0; index < dados.professores.length; index++) {
+                  const prof = dados.professores[index];
+                  tabela = tabela + '<tr>';
+                  tabela = tabela + '<td>'+ prof.name+'</td>';
+                  tabela = tabela + '<td>'+ prof.email+'</td>';
+                  tabela = tabela + '<td>'+ prof.gender+'</td>';
+                  tabela = tabela + '</tr>';
+                }
+                tabela = tabela + '</table>';
+                document.getElementById("divresultadoapi").innerHTML = tabela
+            }
+            xhttp.open("get", "http://localhost/apirestphp/aluno/api.php");
+            //xhttp.open("get", "https://gorest.co.in/public/v2/posts");
+            xhttp.setRequestHeader("Content-Type", "application/text");
+            xhttp.send();
+        }
+
+        function listarApiExterna(){
+            //document.getElementById("demo").innerHTML ='<div class="spinner-border" role="status"></div>';
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                const dados = JSON.parse(this.responseText);
+                var tabela = '<table id="" name=""  class="table">';
+                tabela = tabela + '<tr>';
+                tabela = tabela + '<th>user_id</th>';
+                tabela = tabela + '<th>title</th>';
+                tabela = tabela + '<th>body</th>';
+                tabela = tabela + '</tr>';
+                //imprimir os dados na tabela
+                for (let index = 0; index < dados.length; index++) {
+                  const prof = dados[index];
+                  tabela = tabela + '<tr>';
+                  tabela = tabela + '<td>'+ prof.user_id+'</td>';
+                  tabela = tabela + '<td>'+ prof.title+'</td>';
+                  tabela = tabela + '<td>'+ prof.body+'</td>';
+                  tabela = tabela + '</tr>';
+                }
+                tabela = tabela + '</table>';
+                document.getElementById("divresultadoapi").innerHTML = tabela
+            }
+            xhttp.open("get", "https://gorest.co.in/public/v2/posts");
+            xhttp.setRequestHeader("Content-Type", "application/text");
+            xhttp.send();
+        }
+        listarProfessores();
+    </script>
+
+
+
   </body>
 </html>
